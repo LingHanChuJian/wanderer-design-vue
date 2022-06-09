@@ -1,7 +1,7 @@
 <!-- **中文** | [English](./README.md) -->
 
 <h1 align="center">
-  <a href="https://www.antdv.com/" target="_blank">Wanderer Design Vue</a>
+  Wanderer Design Vue
 </h1>
 
 <div align="center">
