@@ -1,0 +1,124 @@
+.move-motion(@className, @keyframeName) {
+    @name: ~'@{wanderer-prefix}-@{className}';
+
+    .make-motion(@name, @keyframeName);
+
+    .@{name}-enter,
+    .@{name}-appear {
+      opacity: 0;
+      animation-timing-function: @ease-out-circ;
+    }
+
+    .@{name}-leave {
+      animation-timing-function: @ease-in-circ;
+    }
+}
+
+.move-motion(move-up, wandererMoveUp);
+.move-motion(move-down, wandererMoveDown);
+.move-motion(move-left, wandererMoveLeft);
+.move-motion(move-right, wandererMoveRight);
+
+@keyframes wandererMoveDownIn {
+    0% {
+        transform: translateY(100%);
+        transform-origin: 0 0;
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0%);
+        transform-origin: 0 0;
+        opacity: 1;
+    }
+}
+
+@keyframes wandererMoveDownOut {
+    0% {
+        transform: translateY(0%);
+        transform-origin: 0 0;
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100%);
+        transform-origin: 0 0;
+        opacity: 0;
+    }
+}
+
+@keyframes wandererMoveLeftIn {
+    0% {
+        transform: translateX(-100%);
+        transform-origin: 0 0;
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0%);
+        transform-origin: 0 0;
+        opacity: 1;
+    }
+}
+
+@keyframes wandererMoveLeftOut {
+    0% {
+        transform: translateX(0%);
+        transform-origin: 0 0;
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100%);
+        transform-origin: 0 0;
+        opacity: 0;
+    }
+}
+
+@keyframes wandererMoveRightIn {
+    0% {
+        transform: translateX(100%);
+        transform-origin: 0 0;
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0%);
+        transform-origin: 0 0;
+        opacity: 1;
+    }
+}
+
+@keyframes wandererMoveRightOut {
+    0% {
+        transform: translateX(0%);
+        transform-origin: 0 0;
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        transform-origin: 0 0;
+        opacity: 0;
+    }
+}
+
+@keyframes wandererMoveUpIn {
+    0% {
+        transform: translateY(-100%);
+        transform-origin: 0 0;
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0%);
+        transform-origin: 0 0;
+        opacity: 1;
+    }
+}
+
+@keyframes wandererMoveUpOut {
+    0% {
+        transform: translateY(0%);
+        transform-origin: 0 0;
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100%);
+        transform-origin: 0 0;
+        opacity: 0;
+    }
+}

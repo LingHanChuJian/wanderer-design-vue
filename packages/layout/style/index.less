@@ -1,0 +1,55 @@
+@import '../../style/theme/default.less';
+
+@layout-prefix-cls: ~'@{wanderer-prefix}-layout';
+
+.@{layout-prefix-cls} {
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+    overflow: hidden;
+    position: relative;
+
+    &,
+    * {
+      box-sizing: border-box;
+    }
+
+    &&-has-sider {
+        flex-direction: row;
+    
+        > .@{layout-prefix-cls},
+        > .@{layout-prefix-cls}-content {
+          width: 0; // https://segmentfault.com/a/1190000019498300
+        }
+    }
+
+    &-sider {
+        position: relative;
+        min-width: 0;
+        transition: all @transition-duration-base;
+
+        &-children {
+            height: 100%;
+            margin-top: -0.1px;
+            // Hack for fixing margin collaspe bug
+            // https://github.com/ant-design/ant-design/issues/7967
+            // solution from https://stackoverflow.com/a/33132624/3040605
+            padding-top: 0.1px;
+        }
+    }
+
+    &-header,
+    &-footer {
+      flex: 0 0 auto;
+    }
+
+    &-header {
+        height: @Layout-header-height;
+        line-height: @Layout-header-height;
+    }
+
+    &-content {
+        flex: auto;
+        min-height: 0;
+    }
+}
