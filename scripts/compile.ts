@@ -29,6 +29,7 @@ const esDir = getRootPath('es')
 const libDir = getRootPath('lib')
 const umdDir = getRootPath('dist')
 const pkgDir = getRootPath('packages')
+const typingsDir = getRootPath('typings')
 
 const target = 'es2018'
 const info = `/**\n * name: ${name}\n * version: v${version}\n * description: ${description}\n * author: ${author}\n * Copyright 2021-present\n * Released under the MIT License.\n */`
@@ -36,6 +37,7 @@ const info = `/**\n * name: ${name}\n * version: v${version}\n * description: ${
 async function dist(minify = true) {
     console.log(`[series] Compile to umd ${minify ? 'minify': ''}`)
     rimraf.sync(umdDir)
+    rimraf.sync(typingsDir)
 
     const plugins = [
         vue(),
@@ -44,7 +46,7 @@ async function dist(minify = true) {
         banner(info)
     ]
 
-    if (minify) { plugins.push(dts({ outputDir: 'typings'})) }
+    if (minify) { plugins.push(dts({ outputDir: 'typings' })) }
 
     await build({
         build: {
@@ -62,6 +64,7 @@ async function dist(minify = true) {
             rollupOptions: {
                 external: ['vue'],
                 output: {
+                    exports: 'named',
                     globals: {
                         vue: 'Vue'
                     }
@@ -135,7 +138,7 @@ async function style(minify = true, dark = false) {
 async function locale(minify = true) {
     console.log(`[series] Compile to locale ${minify ? 'minify': ''}`)
 
-    const files = await glob('packages/locale/*.ts', {
+    const files = await glob('packages/locales/*.ts', {
         absolute: true
     })
 
@@ -154,7 +157,7 @@ async function locale(minify = true) {
 
         await bundle.write({
             format: 'umd',
-            file: getRootPath('dist', 'locale', `${filename}${minify ? '.min' : ''}.js`),
+            file: getRootPath('dist', 'locales', `${filename}${minify ? '.min' : ''}.js`),
             exports: 'default',
             name: filename,
             sourcemap: minify,
@@ -236,8 +239,8 @@ async function compile(modules = true) {
 
 async function compileLib(done: TaskCallback) {
     await Promise.all([dist(false), dist()])
-    await Promise.all([locale(false), locale()])
     await Promise.all([style(false), style(), style(false, true), style(true, true)])
+    await Promise.all([locale(false), locale()])
     await writeThemeFile()
     rimraf.sync('dist/style.js')
     done()

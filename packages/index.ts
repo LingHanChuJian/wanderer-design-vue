@@ -14,8 +14,9 @@ const install = (app: App) => {
     return app
 }
 
-export * from './packages'
 export * from './hook'
+export * from './locales'
+export * from './packages'
 
 export default {
     version,

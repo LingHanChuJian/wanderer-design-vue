@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, PropType, UnwrapNestedRefs, InjectionKey } from 'vue'
 
-import zh_CN from '../locale/zh_CN'
+import zh_CN from '../locales/zh_CN'
 import { defineComponent, reactive, provide } from 'vue'
 
 export interface Locale {
