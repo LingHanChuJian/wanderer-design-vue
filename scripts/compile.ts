@@ -195,7 +195,7 @@ async function compile(modules = true) {
     const source = [
         '**/*.{js,jsx,ts,tsx}',
         '!**/__tests__/*',
-        '!**/locales.ts' // Generated an empty chunk: "locales" 
+        // '!**/locales.ts' // Generated an empty chunk: "locales" 
     ]
 
     const input = await glob(source, { cwd: pkgDir, absolute: true, onlyFiles: true })
