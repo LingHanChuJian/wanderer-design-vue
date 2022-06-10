@@ -1,10 +1,10 @@
-import { defineComponent, inject } from 'vue'
-import { defaultConfigProvider, ConfigProviderKey } from '../config-provider'
+import { defineComponent } from 'vue'
+import useConfigReceiver from '../hook/useConfigReceiver'
 
 const Header = defineComponent({
     name: 'WandererHeader',
     setup(props, { slots }) {
-        const { getPrefixCls } = inject(ConfigProviderKey, defaultConfigProvider)
+        const { getPrefixCls } = useConfigReceiver()
         const prefixCls = getPrefixCls('layout-header')
         return () => {
             return (

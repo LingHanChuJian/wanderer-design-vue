@@ -1,8 +1,8 @@
 import type { ExtractPropTypes } from 'vue'
 
 import isNumeric from '../utils/isNumeric'
+import useConfigReceiver from '../hook/useConfigReceiver'
 import { SiderCollapsedKey, SiderHookProviderKey } from './interface'
-import { defaultConfigProvider, ConfigProviderKey } from '../config-provider'
 import { defineComponent, inject, ref, watch, provide, onMounted, onBeforeUnmount, computed } from 'vue'
 
 export const siderProps = {
@@ -47,7 +47,7 @@ const Sider = defineComponent({
             handleCollapsed(!event.matches)
         }
 
-        const { getPrefixCls } = inject(ConfigProviderKey, defaultConfigProvider)
+        const { getPrefixCls } = useConfigReceiver()
         const prefixCls = getPrefixCls('layout-sider')
         const siderCls = computed(() => {
             return [

@@ -1,6 +1,8 @@
-import type { ExtractPropTypes, PropType, UnwrapNestedRefs, InjectionKey } from 'vue'
+import type { ConfigHookProviderKey } from './interface'
+import type { ExtractPropTypes, PropType, UnwrapNestedRefs } from 'vue'
 
 import zh_CN from '../locales/zh_CN'
+import { ConfigProviderKey } from './interface'
 import { defineComponent, reactive, provide } from 'vue'
 
 export interface Locale {
@@ -12,15 +14,9 @@ export const configProviderProps = {
     locale: { type: Object as PropType<Locale>, default: zh_CN }
 }
 
-type ConfigProviderPropsType = ExtractPropTypes<typeof configProviderProps>
+export type ConfigProviderPropsType = ExtractPropTypes<typeof configProviderProps>
 
 export type ConfigProviderProps = Partial<ConfigProviderPropsType>
-
-export interface ConfigHookProviderKey extends ConfigProviderPropsType {
-    getPrefixCls: (suffixCls: string) => string
-}
-
-export const ConfigProviderKey: InjectionKey<ConfigHookProviderKey>  = Symbol('ConfigProvider')
 
 const ConfigProvider = defineComponent({
     name: 'WandererConfigProvider',

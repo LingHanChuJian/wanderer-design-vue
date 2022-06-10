@@ -1,6 +1,6 @@
 import { SiderHookProviderKey } from './interface'
-import { defineComponent, inject, ref, provide, computed } from 'vue'
-import { defaultConfigProvider, ConfigProviderKey } from '../config-provider'
+import useConfigReceiver from '../hook/useConfigReceiver'
+import { defineComponent, ref, provide, computed } from 'vue'
 
 const Layout = defineComponent({
     name: 'WandererLayout',
@@ -16,7 +16,7 @@ const Layout = defineComponent({
         }
         provide(SiderHookProviderKey, siderHookProvider)
 
-        const { getPrefixCls } = inject(ConfigProviderKey, defaultConfigProvider)
+        const { getPrefixCls } = useConfigReceiver()
         const prefixCls = getPrefixCls('layout')
         const layoutCls = computed(() => {
             return [

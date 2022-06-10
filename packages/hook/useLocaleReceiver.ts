@@ -1,8 +1,7 @@
 import type { Locale } from '../config-provider'
 
-import { inject } from 'vue'
 import { get } from 'lodash-unified'
-import { ConfigProviderKey, defaultConfigProvider } from '../config-provider'
+import useConfigReceiver from './useConfigReceiver'
 
 export type Options = Record<string, string | number>
 export type Translator = (path: string, option?: Options) => string
@@ -16,10 +15,12 @@ export const translate = (path: string, options: Options | undefined, locale: Lo
     return (get(locale, path, path) as string).replace( /\{(\w+)\}/g, (_, key) => `${options?.[key] ?? `{${key}}`}`)
 }
 
-export const useLocaleReceiver = (): LocaleContext => {
-    const config = inject(ConfigProviderKey, defaultConfigProvider)
+const useLocaleReceiver = (): LocaleContext => {
+    const config = useConfigReceiver()
     return {
         locale: config.locale,
         t: (path: string, options?: Options) => translate(path, options, config.locale)
     }
 }
+
+export default useLocaleReceiver
