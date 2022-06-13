@@ -44,7 +44,9 @@ const Sider = defineComponent({
 
         let mql: MediaQueryList
         const handleMatchMedia = (event: MediaQueryListEvent) => {
-            handleCollapsed(!event.matches)
+            if (collapsed.value !== event.matches) {
+                handleCollapsed(event.matches)
+            }
         }
 
         const { getPrefixCls } = useConfigReceiver()
