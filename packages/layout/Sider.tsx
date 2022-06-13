@@ -43,7 +43,7 @@ const Sider = defineComponent({
         }
 
         let mql: MediaQueryList
-        const handleMatchMedia = (event: MediaQueryListEvent) => {
+        const handleMatchMedia = (event: MediaQueryListEvent | MediaQueryList) => {
             if (collapsed.value !== event.matches) {
                 handleCollapsed(event.matches)
             }
@@ -76,7 +76,7 @@ const Sider = defineComponent({
                 const { matchMedia } = window
                 mql = matchMedia(`(max-width: ${props.matchMediaWidth}px)`)
                 mql.addEventListener('change', handleMatchMedia)
-                handleCollapsed(!mql.matches)
+                handleMatchMedia(mql)
             }
 
             siderHook?.addSider?.(id)
