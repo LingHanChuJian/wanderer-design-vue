@@ -59,7 +59,7 @@ const Sider = defineComponent({
                 }
             ]
         })
-        const rawWidth = collapsed.value ? props.collapsedWidth : props.width
+        const rawWidth = collapsed.value ? props.width : props.collapsedWidth
         const siderWidth = isNumeric(rawWidth) ? `${rawWidth}px` : String(rawWidth)
         const siderStyle = {
             flex: `0 0 ${siderWidth}`,
