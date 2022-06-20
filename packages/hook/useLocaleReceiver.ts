@@ -7,6 +7,7 @@ export type Options = Record<string, string | number>
 export type Translator = (path: string, option?: Options) => string
 
 export interface LocaleContext {
+    lang: string
     locale: Locale
     t: Translator
 }
@@ -16,10 +17,11 @@ export const translate = (path: string, options: Options | undefined, locale: Lo
 }
 
 const useLocaleReceiver = (): LocaleContext => {
-    const config = useConfigReceiver()
+    const { locale } = useConfigReceiver()
     return {
-        locale: config.locale,
-        t: (path: string, options?: Options) => translate(path, options, config.locale)
+        lang: locale.lang as string,
+        locale: locale,
+        t: (path: string, options?: Options) => translate(path, options, locale)
     }
 }
 

@@ -1,5 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 
+import uuid from '../utils/uuid'
 import isNumeric from '../utils/isNumeric'
 import useConfigReceiver from '../hook/useConfigReceiver'
 import { SiderCollapsedKey, SiderHookProviderKey } from './interface'
@@ -15,13 +16,7 @@ export const siderProps = {
 
 export type SiderProps = Partial<ExtractPropTypes<typeof siderProps>>
 
-const uuid = (() => {
-    let i = 0
-    return (prefix: string) => {
-        i++
-        return `__UUID_${prefix}_number_${i}`
-    }
-})()
+const siderKey = uuid()
 
 const Sider = defineComponent({
     name: 'WandererSider',
@@ -68,7 +63,7 @@ const Sider = defineComponent({
             width: siderWidth,
         }
 
-        const id = uuid(prefixCls)
+        const id = siderKey(prefixCls)
         const siderHook = inject(SiderHookProviderKey)
 
         onMounted(() => {

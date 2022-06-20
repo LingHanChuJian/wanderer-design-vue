@@ -46,6 +46,11 @@
     &-header {
         height: @Layout-header-height;
         line-height: @Layout-header-height;
+
+        @media screen and (max-width: @screen-mobile-width) {
+          height: @Layout-header-mobile-height;
+          line-height: @Layout-header-mobile-height;
+        }
     }
 
     &-content {

@@ -1,0 +1,21 @@
+@import '../../style/theme/default.less';
+@import '../../style/core/index.less';
+@import '../../style/mixins/reset.less';
+
+@menu-prefix-cls: ~'@{wanderer-prefix}-menu';
+
+.menu-item-component {
+    margin: 0 @menu-item-margin;
+    color: @menu-item-color;
+    cursor: pointer;
+    position: relative;
+}
+
+.@{menu-prefix-cls} {
+    .reset();
+    position: relative;
+
+    &-item, &-submenu {
+        .menu-item-component();
+    }
+}

@@ -1,8 +1,23 @@
-@import '../color/index.less';
-
 @theme: default;
 
 @wanderer-prefix: wanderer;
+
+// Color
+@white-color: #FFFFFF;
+@grey-color: #EEEEEE;
+@primary-color: #1890ff;
+@brown-color: #6c5b7c;
+@blue-color: #29d;
+@black-color: #000000;
+@green-color: #52c41a;
+@red-color: #F56C6C;
+@yellow-color: #E6A23C;
+
+// Secondary Color
+@info-color: @primary-color;
+@success-color: @green-color;
+@error-color: @red-color;
+@warning-color: @yellow-color;
 
 // Adaptive mobile
 @screen-mobile-width: 860px;
@@ -15,5 +30,17 @@
 @ease-in-circ: cubic-bezier(0.6, 0.04, 0.98, 0.34);
 @ease-out-circ: cubic-bezier(0.08, 0.82, 0.17, 1);
 
+// Font
+@text-color: @brown-color;
+@text-hover-color: @blue-color;
+@text-font-size: 16px;
+@font-feature-settings: 'tnum';
+
 // Layout
 @Layout-header-height: 75px;
+@Layout-header-mobile-height: 50px;
+
+// Menu
+@menu-item-margin: 20px;
+@menu-item-color: @text-color;
+@menu-item-hover-color: @text-hover-color;
