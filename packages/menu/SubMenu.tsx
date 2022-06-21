@@ -12,7 +12,7 @@ import { defineComponent, computed, ref } from 'vue'
 export const subMenuProps = {
     name: { type: [String, Number], required: true },
     title: String,
-    link: { type: Object as PropType<LinkOptions> },
+    link: { type: [Object, String] as PropType<LinkOptions> },
     disabled: { type: Boolean, default: false}
 }
 

@@ -1,14 +1,14 @@
 import type { PropType, ExtractPropTypes } from 'vue'
 import type { Key, MenuMode, MenuInfo, TriggerSubMenuAction } from './interface'
 
+import { defineComponent, computed, ref } from 'vue'
 import useConfigReceiver from '../hook/useConfigReceiver'
-import { defineComponent, computed, ref, watch } from 'vue'
 import { useMenuContextReceiver } from './hook/useMenuContext'
 
 export const menuProps = {
-    activeKey: [String, Number],
     defaultSubMenuOpened: Boolean,
-    openKeys: { type: Array as PropType<Key[]> },
+    activeKey: { type: [String, Number] as PropType<Key>, default: '' },
+    openKeys: { type: Array as PropType<Key[]>, default() { return [] } },
     mode: { type: String as PropType<MenuMode>, default: 'vertical' },
     triggerSubMenuAction: { type: String as PropType<TriggerSubMenuAction>, default: 'hover' }
 }
@@ -22,8 +22,8 @@ const Menu = defineComponent({
     setup(props, { slots, emit }) {
         const mode = ref<MenuMode>(props.mode)
         const defaultSubMenuOpened = ref<boolean>(false)
-        const openKeys = ref<Key[]>(props.openKeys || [])
-        const activeKey = ref<Key>(props.activeKey || '')
+        const openKeys = ref<Key[]>(props.openKeys)
+        const activeKey = ref<Key>(props.activeKey)
         const triggerSubMenuAction = ref<TriggerSubMenuAction>(props.triggerSubMenuAction)
 
         const onItemClick = (info: MenuInfo) => {

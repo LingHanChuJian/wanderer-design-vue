@@ -9,7 +9,7 @@ import { defineComponent, computed, ref, watch } from 'vue'
 
 export const menuItemProps = {
     name: { type: [String, Number], required: true },
-    link: { type: Object as PropType<LinkOptions> },
+    link: { type: [Object, String] as PropType<LinkOptions> },
     disabled: Boolean
 }
 

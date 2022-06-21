@@ -7,6 +7,7 @@ import MenuItem from './MenuItem'
 export type { MenuProps } from './Menu'
 export type { SubMenuProps } from './SubMenu'
 export type { MenuItemProps } from './MenuItem'
+export type { Key, MenuMode, TriggerSubMenuAction } from './interface'
 
 export {
     SubMenu,

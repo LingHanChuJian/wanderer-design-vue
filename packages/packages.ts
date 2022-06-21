@@ -7,5 +7,5 @@ export { default as Dropdown } from './dropdown'
 export type { PopupProps } from './popup'
 export { default as Popup } from './popup'
 
-export type { MenuProps, SubMenuProps, MenuItemProps } from './menu'
+export type { MenuProps, SubMenuProps, MenuItemProps, Key, MenuMode, TriggerSubMenuAction } from './menu'
 export { default as Menu, SubMenu, MenuItem } from './menu'

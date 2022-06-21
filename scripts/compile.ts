@@ -218,11 +218,9 @@ async function compile(modules = true) {
             })
         ],
         external: (source: string) => {
-            return ['vue', '@vue', 'lodash', 'lodash-es', 'lodash-unified', /\.less|\.css/].some(pkg => {
-                if (pkg instanceof RegExp) {
-                    return pkg.test(source)
-                }
-                return source === pkg || source.startsWith(`${pkg}/`)
+            // 外部依赖没处理好 可能会导致 less css 路径不对
+            return ['vue', '@vue', 'lodash', '@floating', /\.less|\.css/].some(pkg => {
+                return pkg instanceof RegExp ? pkg.test(source) : (source === pkg || source.startsWith(pkg))
             })
         }
     })

@@ -4,11 +4,13 @@ import { useRouter, useRoute } from 'vue-router'
 
 export type Target = '_self' | '_blank' | '_parent' | '_top'
 
-export interface LinkOptions {
-    to: RouteLocationRaw,
-    replace?: boolean,
+export interface LinkRouter {
+    to: RouteLocationRaw
+    replace?: boolean
     target?: Target
 }
+
+export type LinkOptions = LinkRouter | string
 
 export const useLinkReceiver = (options: LinkOptions) => {
     const route = useRoute()
@@ -16,6 +18,7 @@ export const useLinkReceiver = (options: LinkOptions) => {
 
     const internalLink = (e: MouseEvent, newWindow: boolean) => {
         e.preventDefault()
+        options = typeof options === 'string' ? { to: options } : options
         if (options.target === '_blank') { return }
         let to = options.to
         if (newWindow) {
