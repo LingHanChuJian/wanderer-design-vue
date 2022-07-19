@@ -1,8 +1,8 @@
 import type { Placement, Strategy, VirtualElement, Middleware } from '@floating-ui/dom'
 import type { TeleportProps, PropType, TransitionProps, ExtractPropTypes, CSSProperties } from 'vue'
 
-import { offset, arrow } from '@floating-ui/dom'
 import useFloating from '../hook/useFloating'
+import { offset, arrow } from '@floating-ui/dom'
 import useConfigReceiver from '../hook/useConfigReceiver'
 import { defineComponent, Transition, Teleport, ref, computed, watch } from 'vue'
 
@@ -82,7 +82,6 @@ const Popup = defineComponent({
         const arrawStyle = computed<CSSProperties>(() => {
             if (!props.showArrow) { return {} }
             const { arrow } = middlewareData.value
-            // const side = {}
             return {
                 top: `${arrow?.y}` || '',
                 left: `${arrow?.x}px` || '',

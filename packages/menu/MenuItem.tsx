@@ -27,7 +27,7 @@ const MenuItem = defineComponent({
 
         watch(
             activeKey,
-            () => activeKey.value === key.value,
+            () => active.value = activeKey.value === key.value,
             { immediate: true }
         )
 

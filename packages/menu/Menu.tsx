@@ -61,9 +61,10 @@ const Menu = defineComponent({
                 `${prefixCls}-${props.mode}`
             ]
         })
+
         return () => {
             return (
-                <ul class={menuCls}>
+                <ul class={menuCls.value}>
                     {slots.default?.()}
                 </ul>
             )

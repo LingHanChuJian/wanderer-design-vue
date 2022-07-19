@@ -4,7 +4,8 @@ import { defineComponent, Transition } from 'vue'
 import useConfigReceiver from '../hook/useConfigReceiver'
 
 export const dropdownPorops = {
-    appear: Boolean
+    appear: Boolean,
+    visible: Boolean
 }
 
 export type DropdownPorops = Partial<ExtractPropTypes<typeof dropdownPorops>>
@@ -65,7 +66,9 @@ const Dropdown = defineComponent({
         return () => {
             return (
                 <Transition {...transitionProps}>
-                    { slots.default?.()}
+                    <div v-show={props.visible} class={prefixCls}>
+                        { slots.default?.()}
+                    </div>
                 </Transition>
             )
         }

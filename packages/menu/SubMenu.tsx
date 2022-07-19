@@ -75,13 +75,13 @@ const SubMenu = defineComponent({
 
         const popup = (
             <Popup reference={reference.value} placement='bottom' visible={opened.value} showArrow>
-                <ul class={`${prefixCls}-content`} >{slots.defalut?.()}</ul>
+                <ul class={`${prefixCls}-popup-content`} >{slots.defalut?.()}</ul>
             </Popup>
         )
         
         const dropdown = (
-            <Dropdown appear>
-                <ul v-show={opened.value} class={`${prefixCls}-content`}>{slots.defalut?.()}</ul>
+            <Dropdown appear visible={opened.value}>
+                <ul class={`${prefixCls}-dropdown-content`}>{slots.defalut?.()}</ul>
             </Dropdown>
         )
 

@@ -3,9 +3,10 @@
 @import '../../style/mixins/reset.less';
 
 @menu-prefix-cls: ~'@{wanderer-prefix}-menu';
+@dropdown-prefix: ~'@{wanderer-prefix}-dropdown';
+@popup-prefix: ~'@{wanderer-prefix}-popup';
 
 .menu-item-component {
-    margin: 0 @menu-item-margin;
     color: @menu-item-color;
     cursor: pointer;
     position: relative;
@@ -17,5 +18,107 @@
 
     &-item, &-submenu {
         .menu-item-component();
+    }
+
+    &-submenu {
+        .@{popup-prefix} {
+            position: absolute;
+            border-radius: @border-radius-base;
+            box-shadow: @dropdown-shadow;
+            z-index: 999;
+            background-color: @dropdown-menu-bg;
+
+            &-arrow {
+                position: absolute;
+                border-width: 10px;
+                border-style: solid;
+                border-color: transparent transparent @dropdown-menu-bg;
+            }
+        }
+
+        &-content {
+            width: max-content;
+            padding: 16px 0;
+        }
+    }
+
+    &-horizontal {
+        display: inline-flex;
+    }
+
+    &-item, &-submenu-title {
+        svg, i {
+            padding-right: 4px;
+            display: inline-block;
+            vertical-align: text-bottom;
+        }
+    }
+
+    &-horizontal &-item, &-horizontal &-submenu-title {
+        padding: 0 20px;
+
+        &::after {
+            content: '';
+            position: absolute;
+            transition: width .25s ease-in-out;
+            height: 5px;
+            background-color: @menu-item-hover-color;
+            width: 0;
+            bottom: 0;
+            left: 0;
+        }
+    }
+
+    &-horizontal &-item:hover,
+    &-horizontal &-item-active,
+    &-horizontal &-submenu-opened &-submenu-title {
+        color: @menu-item-hover-color;
+
+        &::after {
+            width: 100%;
+        }
+    }
+
+    &-vertical {
+        height: 100%;
+    }
+
+    &-vertical &-item,
+    &-vertical &-submenu {
+        position: relative;
+    }
+
+    &-vertical &-item,
+    &-vertical &-submenu-title {
+        padding: 12px 24px;
+
+        &:hover {
+            color: @menu-item-hover-color;
+        }
+    }
+
+    &-vertical &-item-active:not(&-submenu) {
+        color: @menu-item-hover-color;
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: @menu-item-hover-color;
+        }
+    }
+
+    &-submenu-dropdown-content &-item {
+        padding: 10px 20px;
+        height: auto;
+        line-height: normal;
+
+        &::after {
+            content: none;
+        }
     }
 }
